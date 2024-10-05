@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Maxux Wireless</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#091d36">
+    </head>
+
+    <body>
+        <div class="container p-4">
+            <h1 class="my-5">Maxux Wireless Invite</h1>
+
+            <form action="/create/{{ id }}" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="username">Username</span>
+                    <input type="text" class="form-control" id="username" name="username" value="" autofocus autocorrect="off" autocapitalize="off">
+                </div>
+
+                <button class="btn btn-success w-100">Make me an account</button>
+            </form>
+        </div>
+    </body>
+</html>

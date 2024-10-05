@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Maxux Wireless</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#091d36">
+    </head>
+
+    <body>
+        <div class="container p-4 text-center">
+            <h1 class="my-5">Wireless Invitation</h1>
+            <p>{{ id }}</p>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="sessid" value="https://wireless.maxux.net/invite/{{ id }}" readonly>
+                <button class="btn btn-outline-secondary" type="button" onclick="return copyaddress();">Copy</button>
+            </div>
+        <div>
+    </body>
+
+    <script>
+    function copyaddress() {
+        var input = document.querySelector('#sessid');
+
+        input.contenteditable = true;
+        input.readonly = false;
+
+        var range = document.createRange();
+        range.selectNodeContents(input);
+
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        input.setSelectionRange(0, 999999);
+
+        document.execCommand('copy');
+
+        return false;
+    }
+    </script>
+</html>
