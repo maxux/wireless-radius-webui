@@ -26,27 +26,21 @@
             <div class="input-group mb-3">
                 <span class="input-group-text">Password</span>
                 <input type="text" class="form-control" id="password" value="{{ password }}" readonly>
-                <button class="btn btn-outline-secondary" type="button" onclick="return copypassword();">Copy</button>
+                <button class="btn btn-outline-secondary" type="button" onclick="return copypassword(this);">Copy</button>
             </div>
         </div>
     </body>
 
     <script>
-    function copypassword() {
-        var input = document.querySelector('#password');
+    function copypassword(sender) {
+        let password = document.querySelector('#password').value;
 
-        input.contenteditable = true;
-        input.readonly = false;
+        navigator.clipboard.writeText(password).then(() => {
+            sender.innerText = "Copied !";
 
-        var range = document.createRange();
-        range.selectNodeContents(input);
-
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        input.setSelectionRange(0, 999999);
-
-        document.execCommand('copy');
+        },() => {
+            sender.innerText = "Failed";
+        });
 
         return false;
     }
