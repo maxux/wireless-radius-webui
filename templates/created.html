@@ -13,32 +13,37 @@
         <div class="container p-4 text-center">
             <h1 class="my-5">Maxux Wireless</h1>
 
-            <div class="input-group mb-5">
-                <span class="input-group-text">Network</span>
-                <input type="text" class="form-control" id="network" value="Maxux Network (5.2G)" readonly>
+            <div class="input-group mb-4">
+                <span class="input-group-text d-block text-center" style="width: 100px">Network</span>
+                <input type="text" class="form-control font-monospace text-bg-light" id="network" value="Maxux Network (5.2G)" readonly disabled>
             </div>
 
             <div class="input-group mb-3">
-                <span class="input-group-text">Username</span>
-                <input type="text" class="form-control" id="username" value="{{ username }}" readonly>
+                <span class="input-group-text d-block text-center" style="width: 100px">Username</span>
+                <!-- <input type="text" class="form-control font-monospace text-bg-light" id="username" value="{{ username }}" readonly disabled> -->
+                <span class="form-control font-monospace text-bg-light text-start">Coucou</span>
             </div>
 
             <div class="input-group mb-3">
-                <span class="input-group-text">Password</span>
-                <input type="text" class="form-control" id="password" value="{{ password }}" readonly>
-                <button class="btn btn-outline-secondary" type="button" onclick="return copypassword(this);">Copy</button>
+                <span class="input-group-text d-block text-center" style="width: 100px">Password</span>
+                <span class="form-control font-monospace text-bg-light text-truncate text-start d-inline-block" id="password">{{ password }}</span>
+                <button class="btn btn-primary" type="button" onclick="return copypassword(this);">Copy</button>
             </div>
         </div>
     </body>
 
     <script>
     function copypassword(sender) {
-        let password = document.querySelector('#password').value;
+        let password = document.querySelector('#password').innerText;
+
+        sender.classList.remove("btn-outline-secondary");
 
         navigator.clipboard.writeText(password).then(() => {
-            sender.innerText = "Copied !";
+            sender.classList.add("btn-success");
+            sender.innerText = "Copied";
 
         },() => {
+            sender.classList.add("btn-danger");
             sender.innerText = "Failed";
         });
 

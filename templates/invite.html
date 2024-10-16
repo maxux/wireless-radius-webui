@@ -10,35 +10,33 @@
     </head>
 
     <body>
-        <div class="container p-4 text-center">
-            <h1 class="my-5">Wireless Invitation</h1>
-            <p>{{ id }}</p>
+    <div class="container p-4 text-center">
+        <h1 class="my-5">Wireless Invitation</h1>
+        <p>{{ id }}</p>
 
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="sessid" value="https://wireless.maxux.net/invite/{{ id }}" readonly>
-                <button class="btn btn-outline-secondary" type="button" onclick="return copyaddress();">Copy</button>
-            </div>
-        <div>
-    </body>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="sessid" value="https://wireless.maxux.net/invite/{{ id }}" readonly disabled>
+            <button class="btn btn-primary" type="button" onclick="return copylink(this);">Copy</button>
+        </div>
+    <div>
 
     <script>
-    function copyaddress() {
-        var input = document.querySelector('#sessid');
+    function copylink(sender) {
+        let address = document.querySelector('#sessid').value;
 
-        input.contenteditable = true;
-        input.readonly = false;
+        sender.classList.remove("btn-outline-secondary");
 
-        var range = document.createRange();
-        range.selectNodeContents(input);
+        navigator.clipboard.writeText(address).then(() => {
+            sender.classList.add("btn-success");
+            sender.innerText = "Copied";
 
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        input.setSelectionRange(0, 999999);
-
-        document.execCommand('copy');
+        },() => {
+            sender.classList.add("btn-danger");
+            sender.innerText = "Failed";
+        });
 
         return false;
     }
     </script>
+    </body>
 </html>
